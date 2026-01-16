@@ -102,6 +102,7 @@ fetch("https://hp-api.onrender.com/api/characters")
 
                 const li = document.createElement("li");
                 const img = document.createElement("img");
+                img.referrerPolicy = "no-referrer";
                 img.src = personaje.imagen ||
                     "./assets/placeholder.png"; 
                 const nombre = document.createElement("p");
