@@ -103,8 +103,16 @@ fetch("https://hp-api.onrender.com/api/characters")
                 const li = document.createElement("li");
                 const img = document.createElement("img");
                 img.referrerPolicy = "no-referrer";
-                img.src = personaje.imagen ||
-                    "./assets/placeholder.png"; 
+                // img.src = personaje.imagen ||
+                //     "./assets/placeholder.png"; 
+
+                const originalUrl = personaje.image || personaje.imagen;
+                if (originalUrl && originalUrl.includes("http")) {
+                    // Başına wsrv.nl (Image Proxy) ekleyerek Netlify engelini aşalım
+                    img.src = `https://wsrv.nl/?url=${originalUrl}`;
+                } else {
+                    img.src = "./assets/placeholder.png";
+                }
                 const nombre = document.createElement("p");
                 nombre.textContent = personaje.nombre;
 
